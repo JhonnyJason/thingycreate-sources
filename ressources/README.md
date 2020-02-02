@@ -182,7 +182,9 @@ The imported recipes are available in the userConfig.json in `thingyRecipes` as 
     (~/thingies)
 - edit temporaryFiles path - here we download all temporary files which are then immediately deleted after usage.
     (~/.config/thingyBubble/temporaryFiles)
---- 
+---
+- change Password - yes, now we also may do that :D 
+---
 ## thingyType -> Recipe
 The recipes are the only thing which we need to understand to know how we make our own `thingyTypes` and not being confused about the creation process.
 
