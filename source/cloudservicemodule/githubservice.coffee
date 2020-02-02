@@ -1,4 +1,4 @@
-githubservicemodule = {name: "githubservicemodule"}
+githubservice = {name: "githubservice"}
 
 #region node_modules
 OctokitREST = require("@octokit/rest")
@@ -16,7 +16,7 @@ globalScope = null
 ##############################################################################
 #region logFunctions
 log = (arg) ->
-    if allModules.debugmodule.modulesToDebug["githubservicemodule"]?  then console.log "[githubservicemodule]: " + arg
+    if allModules.debugmodule.modulesToDebug["cloudservicemodule"]?  then console.log "[githubservice]: " + arg
     return
 ostr = (o) -> JSON.stringify(o, null, 4)
 olog = (o) -> log "\n" + ostr(o)
@@ -24,8 +24,8 @@ printError = (msg) -> console.log(c.red("\n" + msg))
 printSuccess = (msg) -> console.log(c.green("\n" + msg))
 #endregion
 ##############################################################################
-githubservicemodule.initialize = () ->
-    log "githubservicemodule.initialize"
+githubservice.initialize = () ->
+    log "githubservice.initialize"
     globalScope = allModules.globalscopemodule
     return
 #endregion
@@ -90,8 +90,8 @@ deleteRepository = (service, repo) ->
 #endregion
 
 #region exposedFunctions
-githubservicemodule.check = (service) ->
-    log "githubservicemodule.check"
+githubservice.check = (service) ->
+    log "githubservice.check"
     service.isAccessible = await checkAccess(service.accessToken)
     service.hostURL = baseUrl
     if service.isAccessible
@@ -99,21 +99,21 @@ githubservicemodule.check = (service) ->
         globalScope.addServiceScope(scope, service)
     return
 
-githubservicemodule.deleteRepository = (service, repo) ->
+githubservice.deleteRepository = (service, repo) ->
     await deleteRepository(service, repo)
     return
 
-githubservicemodule.createRepository = (service, repo, visible) ->
+githubservice.createRepository = (service, repo, visible) ->
     await createRepository(service, repo, visible)
     return
 
-githubservicemodule.getSSHURLBase = (service) ->
-    log "githubservicemodule.getSSHURLBase"
+githubservice.getSSHURLBase = (service) ->
+    log "githubservice.getSSHURLBase"
     return "git@github.com:" + service.username
 
-githubservicemodule.getHTTPSURLBase = (service) ->
-    log "githubservicemodule.getHTTPSURLBase"
+githubservice.getHTTPSURLBase = (service) ->
+    log "githubservice.getHTTPSURLBase"
     return "https://github.com/" + service.username
 #endregion
 
-module.exports = githubservicemodule
+module.exports = githubservice

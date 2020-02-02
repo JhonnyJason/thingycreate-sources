@@ -1,4 +1,4 @@
-gitlabservicemodule = {name: "gitlabservicemodule"}
+gitlabservice = {name: "gitlabservice"}
 
 #region modulesFromEnvironment
 #region node_modules
@@ -15,7 +15,7 @@ globalScope = null
 #region logPrintFunctions
 ##############################################################################
 log = (arg) ->
-    if allModules.debugmodule.modulesToDebug["gitlabservicemodule"]?  then console.log "[gitlabservicemodule]: " + arg
+    if allModules.debugmodule.modulesToDebug["cloudservicemodule"]?  then console.log "[gitlabservice]: " + arg
     return
 ostr = (o) -> JSON.stringify(o, null, 4)
 olog = (o) -> log "\n" + ostr(o)
@@ -23,8 +23,8 @@ printError = (msg) -> console.log(c.red("\n" + msg))
 printSuccess = (msg) -> console.log(c.green("\n" + msg))
 #endregion
 ##############################################################################
-gitlabservicemodule.initialize = () ->
-    log "gitlabservicemodule.initialize"
+gitlabservice.initialize = () ->
+    log "gitlabservice.initialize"
     urlHandler = allModules.urlhandlermodule
     globalScope = allModules.globalscopemodule
     return
@@ -103,30 +103,30 @@ deleteRepository = (service, repo) ->
 #endregion
 
 #region exposedFunctions
-gitlabservicemodule.check = (service) ->
-    log "gitlabservicemodule.check"
+gitlabservice.check = (service) ->
+    log "gitlabservice.check"
     service.isAccessible = await checkAccess(service)
     if service.isAccessible
         scope = await retrieveAllRepositories(service)
         globalScope.addServiceScope(scope, service)
     return
 
-gitlabservicemodule.deleteRepository = (service, repo) ->
+gitlabservice.deleteRepository = (service, repo) ->
     await deleteRepository(service, repo)
     return
 
-gitlabservicemodule.createRepository = (service, repo, visible) ->
+gitlabservice.createRepository = (service, repo, visible) ->
     await createRepository(service, repo, visible)
     return
 
-gitlabservicemodule.getSSHURLBase = (service) ->
-    log "gitlabservicemodule.getSSHURLBase"
+gitlabservice.getSSHURLBase = (service) ->
+    log "gitlabservice.getSSHURLBase"
     serverName = urlHandler.getServerName(service.hostURL)
     return "git@" + serverName + ":" + service.username
 
-gitlabservicemodule.getHTTPSURLBase = (service) ->
-    log "gitlabservicemodule.getHTTPSURLBase"
+gitlabservice.getHTTPSURLBase = (service) ->
+    log "gitlabservice.getHTTPSURLBase"
     return service.hostURL + "/" + service.username
 #endregion
 
-module.exports = gitlabservicemodule
+module.exports = gitlabservice

@@ -18,13 +18,13 @@ userConfig = null
 allCloudServiceTypes = 
     github:
         defaultHost: "https://api.github.com"
-        moduleName: "githubservicemodule"
+        module: require "./githubservice"
     gitlab:
         defaultHost: "https://gitlab.com"
-        moduleName: "gitlabservicemodule"
+        module: require "./gitlabservice"
     # bitbucket:
     #     defaultHost: "https://api.bitbucket.org/2.0"
-    #     moduleName: "bitbucketservicemodule"
+    #     module: require "bitbucketservice"
 
 allServiceTypes = Object.keys(allCloudServiceTypes)
 #endregion
@@ -44,6 +44,8 @@ cloudservicemodule.initialize = ->
     userConfig = allModules.userconfigmodule
     urlHandler = allModules.urlhandlermodule
     user = allModules.userinquirermodule
+
+    await m.module.initialize() for n,m of allCloudServiceTypes 
     return
 
 #region internalFunctions
@@ -77,15 +79,15 @@ getStringProperties = (service) ->
 createRepository = (service, repoName, visible) ->
     log "createRepository"
     type = service.type
-    module = allCloudServiceTypes[type].moduleName
-    await allModules[module].createRepository(service, repoName, visible)
+    module = allCloudServiceTypes[type].module
+    await module.createRepository(service, repoName, visible)
     return
 
 deleteRepository = (service, repoName) ->
     log "deleteRepository"
     type = service.type
-    module = allCloudServiceTypes[type].moduleName
-    await allModules[module].deleteRepository(service, repoName)
+    module = allCloudServiceTypes[type].module
+    await module.deleteRepository(service, repoName)
     return
 #region urlRelatedFunctions
 getSSHURLBaseForUnknownService = (service) ->
@@ -102,16 +104,16 @@ sshURLBaseForService = (service) ->
     log "sshURLBaseForService"
     type = service.type
     if allCloudServiceTypes[type]?
-        module = allCloudServiceTypes[type].moduleName
-        return allModules[module].getSSHURLBase(service)
+        module = allCloudServiceTypes[type].module
+        return module.getSSHURLBase(service)
     getSSHURLBaseForUnknownService(service)
 
 httpsURLBaseForService = (service) ->
     log "httpsURLBaseForService"
     type = service.type
     if allCloudServiceTypes[type]?
-        module = allCloudServiceTypes[type].moduleName
-        return allModules[module].getHTTPSURLBase(service)
+        module = allCloudServiceTypes[type].module
+        return module.getHTTPSURLBase(service)
     getHTTPSURLBaseForUnknownService(service)        
 
 getServiceObjectFromURL = (url) ->
@@ -164,8 +166,8 @@ getAllServiceChoices = ->
 cloudservicemodule.check = (service) ->
     log "cloudservicemodule.checkService"
     type = service.type
-    module = allCloudServiceTypes[type].moduleName
-    await allModules[module].check(service)
+    module = allCloudServiceTypes[type].module
+    await module.check(service)
     return
 
 #region interfaceForUserActions
