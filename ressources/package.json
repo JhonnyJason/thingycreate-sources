@@ -1,0 +1,58 @@
+{
+    "name": "thingycreate",
+    "version": "0.3.3",
+    "description": "Wizard to create any thingy",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "Git",
+        "github",
+        "gitlab",
+        "repositories",
+        "repository",
+        "structure",
+        "direcotries",
+        "directory",
+        "CLI",
+        "thingy",
+        "create",
+        "thingycreate",
+        "tool",
+        "webtech",
+        "toolset",
+        "build",
+        "system",
+        "build-system"
+    ],
+    "author": "Lenard Frommelt lenard.frommelt@gne.or.at",
+    "license": "Unlicense",
+    "bin": {
+        "thingycreate": "./index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/JhonnyJason/thingycreate-as-thingy.git"
+    },
+    "bugs": {
+        "url": "https://github.com/JhonnyJason/thingycreate-as-thingy/issues"
+    },
+    "homepage": "https://github.com/JhonnyJason/thingycreate-as-thingy-output#readme",
+    "dependencies": {
+        "@octokit/rest": "^16.29.0",
+        "chalk": "^2.4.2",
+        "camelcase": "^5.3.1",
+        "clear": "0.1.0",
+        "clui": "^0.3.6",
+        "figlet": "^1.2.4",
+        "fs-extra": "^8.1.0",
+        "gitlab": "^11.4.2",
+        "inquirer": "^7.0.0",
+        "meow": "^5.0.0",
+        "minimist": "^1.2.0",
+        "request": "^2.88.0",
+        "request-promise": "^4.2.4",
+        "simple-git": "^1.126.0"
+    }
+}
