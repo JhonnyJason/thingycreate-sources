@@ -124,6 +124,8 @@ topLevelDecision = ->
     userAction.addEditDeveloperNameChoice(actionChoices)
     userAction.addPathEditChoices(actionChoices)
     actionChoices.push "separator"
+    userAction.addChangePasswordAction(actionChoices)
+    actionChoices.push "separator"
 
     if userConfigIsAcceptable()
         userAction.addSkipChoice(actionChoices)
@@ -218,6 +220,18 @@ userconfigmodule.userConfigurationProcess = ->
             log err
 
 #region userConfigManipulations
+userconfigmodule.changePasswordProcess = ->
+    log "userconfigmodule.changePasswordProcess"
+    current = cfg.userConfig.developerName
+    firstPassword = await user.inquirePassword("new password")
+    secondPassword = await user.inquirePassword("retype password")
+    if firstPassword == secondPassword
+        userPwd = firstPassword
+        await fileWrite()
+    else
+        printError "Passwords did not match!"
+    return
+
 userconfigmodule.editDeveloperName = ->
     log "userconfigmodule.editDeveloperName"
     current = cfg.userConfig.developerName
@@ -225,6 +239,7 @@ userconfigmodule.editDeveloperName = ->
     if post == current then return
     cfg.userConfig.developerName = post
     await fileWrite()
+    return
 
 #region serviceManipulation
 userconfigmodule.addCloudService = (service) ->

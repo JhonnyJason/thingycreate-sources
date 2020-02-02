@@ -70,6 +70,12 @@ allUserActions =
             log "execution of editDefaultThingyRootPathAction"
             await userConfig.editTemporaryFilesPath()
 
+    changePassword:
+        userChoiceLabel: "change password"
+        execute: ->
+            log "execution of changePasswordAction"
+            await userConfig.changePasswordProcess()
+
     skip:
         userChoiceLabel: "skip"
         execute: -> throw false
@@ -117,6 +123,11 @@ useractionmodule.doAction = (action) ->
     await action.execute()
 
 #region addChoices
+useractionmodule.addChangePasswordAction = (choices) ->
+    log "useractionmodule.addChangePasswordAction"
+    choices.push getActionChoice(allUserActions.changePassword)
+    return choices
+
 useractionmodule.addEditDeveloperNameChoice = (choices) ->
     log "useractionmodule.addEditDeveloperNameChoice"
     choices.push getActionChoice(allUserActions.editDeveloperName)
