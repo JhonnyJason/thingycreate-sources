@@ -13,3 +13,6 @@
 [submodule "source/userconfigmodule"]
 	path = source/userconfigmodule
 	url = git@github.com:JhonnyJason/thingycreate-sources-userconfigmodule.git
+[submodule "source/useractionmodule"]
+	path = source/useractionmodule
+	url = git@github.com:JhonnyJason/thingycreate-sources-useractionmodule.git
