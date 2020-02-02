@@ -386,19 +386,28 @@ recipemodule.getRecipe = (thingyType) ->
     log "recipemodule.getRecipe"
     thingyRecipes = userConfig.getThingyRecipes()
     latestChosenType = thingyType
+    result = {}
     if !thingyType or !thingyRecipes[thingyType]?
         if thingyType
-            try return await recipemodule.getModuleRecipe(thingyType)
+            try 
+                recipe = await recipemodule.getModuleRecipe(thingyType)
+                result.recipe = recipe
+                result.type = thingyType
+                return result 
             catch err then log err
         message = "select thingyType: "
         userChoices = Object.keys(thingyRecipes)
         userChoice = await user.inquireUserDecision(userChoices, message)
         latestChosenType = userChoice
         recipe = await loadRecipe(userChoice)
-        return recipe
+        result.recipe = recipe
+        result.type = userChoice
+        return result
     else 
         recipe = await loadRecipe(thingyType)
-        return recipe
+        result.recipe = recipe
+        result.type = thingyType
+        return result
 
 recipemodule.toConstructionPlan = (recipe) ->
     log "recipemodule.toConstructionPlan"

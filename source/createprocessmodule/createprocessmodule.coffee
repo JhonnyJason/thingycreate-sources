@@ -39,7 +39,11 @@ createprocessmodule.execute = (thingyType, thingyName, path, configure) ->
     await pathHandler.prepareBasePath(path)
 
     thingyName = await thingy.checkThingyName(thingyName)
-    thingyRecipe = await recipe.getRecipe(thingyType) 
+
+    result = await recipe.getRecipe(thingyType)
+    thingyRecipe = result.recipe
+    thingyType = result.type
+
     print(">> Constructing thingy " + thingyName + ":")
     constructionPlan = await recipe.toConstructionPlan(thingyRecipe)
     basePath =  pathHandler.basePath
