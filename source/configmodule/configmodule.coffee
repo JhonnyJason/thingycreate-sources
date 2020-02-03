@@ -3,7 +3,6 @@ configmodule = {name: "configmodule"}
 
 #region exposedProperties
 configmodule.cli =
-    name: "thingycreate"
     userRelativeConfigPath: ".config/thingyBubble/userConfig.json"
     userConfigPath: ""
 #endregion
@@ -14,6 +13,12 @@ os = require "os"
 #endregion
 
 #region pre-init
+#region getVersionAndName
+packageJson = require "./package.json"
+configmodule.cli.version = packageJson.version
+configmodule.cli.name = packageJson.name
+#endregion
+
 homedir = os.homedir()
 userRelativeConfigPath = configmodule.cli.userRelativeConfigPath
 userConfigPath = pathModule.resolve(homedir, userRelativeConfigPath)  
