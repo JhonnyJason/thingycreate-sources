@@ -6,7 +6,6 @@ startupmodule = {name: "startupmodule"}
 chalk       = require('chalk')
 clear       = require('clear')
 figlet      = require('figlet')
-minimist    = require('minimist')
 #endregion
 
 #region localModules
