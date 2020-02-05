@@ -2,11 +2,6 @@ pathhandlermodule = {name: "pathhandlermodule"}
 
 #region modulesFromEnvironment
 #region node_modules
-inquirer    = require("inquirer")
-git         = require("simple-git") 
-c           = require('chalk');
-CLI         = require('clui');
-Spinner     = CLI.Spinner;
 fs          = require("fs-extra")
 pathModule  = require("path")
 os = require "os"
@@ -78,7 +73,6 @@ checkDirectoryExists = (path) ->
         stats = await fs.lstat(path)
         return stats.isDirectory()
     catch err
-        # console.log(c.red(err.message))
         return false
 
 checkDirectoryIsInGit = (path) ->
@@ -86,7 +80,6 @@ checkDirectoryIsInGit = (path) ->
         await execGitCheckPromise(path)
         return true
     catch err
-        # console.log(c.red(err.message))
         return false
 #endregion
 
