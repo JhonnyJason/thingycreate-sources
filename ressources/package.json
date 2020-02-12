@@ -1,6 +1,6 @@
 {
     "name": "thingycreate",
-    "version": "0.3.6",
+    "version": "0.3.7",
     "description": "Wizard to create any thingy",
     "main": "index.js",
     "scripts": {
@@ -50,7 +50,7 @@
         "gitlab": "^14.2.2",
         "inquirer": "^7.0.4",
         "meow": "^6.0.0",
-        "request": "^2.88.0",
+        "request": "^2.88.2",
         "request-promise": "^4.2.5",
         "simple-git": "^1.131.0"
     }
