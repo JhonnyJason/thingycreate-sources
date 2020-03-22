@@ -1,6 +1,6 @@
 {
     "name": "thingycreate",
-    "version": "0.3.7",
+    "version": "0.3.8",
     "description": "Wizard to create any thingy",
     "main": "index.js",
     "scripts": {
@@ -40,18 +40,18 @@
     },
     "homepage": "https://github.com/JhonnyJason/thingycreate-output#readme",
     "dependencies": {
-        "@octokit/rest": "^16.43.1",
+        "@octokit/rest": "^17.1.1",
         "chalk": "^3.0.0",
         "camelcase": "^5.3.1",
         "clear": "0.1.0",
         "clui": "^0.3.6",
-        "figlet": "^1.2.4",
-        "fs-extra": "^8.1.0",
+        "figlet": "^1.3.0",
+        "fs-extra": "^9.0.0",
         "gitlab": "^14.2.2",
-        "inquirer": "^7.0.4",
-        "meow": "^6.0.0",
+        "inquirer": "^7.1.0",
+        "meow": "^6.1.0",
         "request": "^2.88.2",
         "request-promise": "^4.2.5",
-        "simple-git": "^1.131.0"
+        "simple-git": "^1.132.0"
     }
 }
