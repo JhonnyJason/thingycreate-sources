@@ -1,6 +1,6 @@
 {
     "name": "thingycreate",
-    "version": "0.3.8",
+    "version": "0.3.9",
     "description": "Wizard to create any thingy",
     "main": "index.js",
     "scripts": {
@@ -40,7 +40,7 @@
     },
     "homepage": "https://github.com/JhonnyJason/thingycreate-output#readme",
     "dependencies": {
-        "@octokit/rest": "^17.1.1",
+        "@octokit/rest": "^17.1.2",
         "chalk": "^3.0.0",
         "camelcase": "^5.3.1",
         "clear": "0.1.0",
